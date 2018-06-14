@@ -16,15 +16,14 @@ import math
 
 env = gym.make('CartPole-v0')
 
-#------class Policy
-# Initialises policy
-# Holds the policy, weights (when calculated in the iteration) and the L-inf and L2 norms of the weights
-# Given a state, returns an action.
-
 #-----Executing simulation
 # Run one episode of the simulator starting at initial_state and using policy (initial policy is random) to select actions
 # Return the total number of steps executed and the discounted and undiscounted rewards collected in the episode
 # episode terminates when reaches max_steps or terminal condition (walker falls down or gets to the end)
+
+#------class Policy
+# Holds the dict policy, weights (when calculated in the iteration) and the L-inf and L2 norms of the weights (when calculated)
+# Given a state, returns an action.
 
 #-----Compute basis
 # input: sampled (state, action) pair
@@ -36,11 +35,12 @@ env = gym.make('CartPole-v0')
 #----Policy Evaluation (LSQ) see: https://www.cs.rutgers.edu/~mlittman/courses/robots03/lspi.pdf
 # input: samples, policy, new_policy
 # output: w (weights), A, b (matrices) (of policy)
-# Definition: Use samples to approximate phi, R, P (R is reward function, P is transition function) in order to approximate Q-values of old policy and new_policy
+# Definition: Use samples to approximate Q-values of old policy and new_policy
+# ???approximate phi, R, P (R is reward function, P is transition function)???
 #
 # Loop through all samples
 #
-# compute phi (basis) for current (state,action)
+# compute phi (basis functions) for current (state,action)
 # get next action for next state via policy(next_state)
 # compute next_phi for (next_state,next_action)
 #
