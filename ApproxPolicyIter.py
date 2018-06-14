@@ -1,9 +1,9 @@
-import pandas as pd
-import math
-from tensorflow.contrib.layers import *
+
 import gym
 import gym.spaces
 import time
+import pandas as pd
+import math
 
 # 'CartPole-v0'
 # actions Discrete(2)
@@ -12,7 +12,7 @@ import time
 
 # 'BipedalWalker-v2'
 # actions box(4,) (not sure yet how to use continuous actions without discretising, may have to use NN)
-# states box(24) (can be 14 if you ignore the LIDAR measurements)
+# states box(24) (or 14 if you ignore the LIDAR measurements)
 
 env = gym.make('CartPole-v0')
 
