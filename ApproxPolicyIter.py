@@ -1,9 +1,7 @@
 
 import gym
 import gym.spaces
-import time
-import pandas as pd
-import math
+import policy
 
 # 'CartPole-v0'
 # actions Discrete(2)
@@ -12,18 +10,14 @@ import math
 
 # 'BipedalWalker-v2'
 # actions box(4,) (not sure yet how to use continuous actions without discretising, may have to use NN)
-# states box(24) (or 14 if you ignore the LIDAR measurements)
+# states box(24,) (or 14 if you ignore the LIDAR measurements)
 
 env = gym.make('CartPole-v0')
 
 #-----Executing simulation
-# Run one episode of the simulator starting at initial_state and using policy (initial policy is random) to select actions
+# Run one episode of the simulator starting at initial_state and using policy (first policy is random) to select actions
 # Return the total number of steps executed and the discounted and undiscounted rewards collected in the episode
 # episode terminates when reaches max_steps or terminal condition (walker falls down or gets to the end)
-
-#------class Policy
-# Holds the dict policy, weights (when calculated in the iteration) and the L-inf and L2 norms of the weights (when calculated)
-# Given a state, returns an action.
 
 #-----Compute basis
 # input: sampled (state, action) pair
