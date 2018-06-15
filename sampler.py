@@ -20,17 +20,16 @@ MAX_STEPS = env.spec.tags.get('wrapper_config.TimeLimit.max_episode_steps')
 def sample(n):
 	sample = ()
 	samples = []
-	prev_s = env.reset()
-	a = bool(random.getrandbits(1)) #random 0 or 1 action
-	next_s,r,done,info = env.step(a)
-	sample = (prev_s,a,r,next_s)
-	samples.append(sample)
-	
-	step_count = 0
 	
 	for i in range(n):
+		prev_s = env.reset()
+		a = bool(random.getrandbits(1)) #random 0 or 1 action
+		next_s,r,done,info = env.step(a)
+		sample = (prev_s,a,r,next_s)
+		samples.append(sample)
 		prev_s = next_s
-		while step_count < MAX_STEPS or done == False:
+		step_count = 0
+		while step_count < MAX_STEPS and not done:
 			a = bool(random.getrandbits(1)) #random 0 or 1 action
 			next_s,r,done,info = env.step(a)
 			sample = (prev_s,a,r,next_s)
