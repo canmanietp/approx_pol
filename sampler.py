@@ -12,7 +12,6 @@ import random
 # states box(24,) (or 14 if you ignore the LIDAR measurements)
 
 env = gym.make('CartPole-v1')
-env.render()
 MAX_STEPS = env.spec.tags.get('wrapper_config.TimeLimit.max_episode_steps')
 
 #-----Create samples
