@@ -2,7 +2,7 @@ import gym
 import gym.spaces
 import random
 
-# 'CartPole-v0'
+# 'CartPole-v1'
 # actions Discrete(2)
 # states Box(4,)
 # reward range (-inf,inf)
