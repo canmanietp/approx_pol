@@ -34,5 +34,6 @@ def sample(n):
 			next_s,r,done,info = env.step(a)
 			sample = (prev_s,a,r,next_s)
 			samples.append(sample)
+			prev_s = next_s
 			step_count+=1
 	return samples

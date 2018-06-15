@@ -3,7 +3,7 @@
 # pi(state) = max_{a in A} Q(state,a) = max_{a in A} phi(state,a)*w
 # Holds the discount factor, weights (when calculated in the iteration) and the L-inf and L2 norms of the weights (when calculated)
 # and the basis associated with the policy
-# and the total number of (discrete) actions [need to mod for continuous)
+# and the total number of (discrete) actions [need to modify for continuous]
 # Given a state, returns an action.
 
 class Policy:
