@@ -1,3 +1,4 @@
 # Approximate Policy Iteration
 
-Implementation with OpenAI Gym's Bipedal Walker.
+Implementation of https://www.cs.rutgers.edu/~mlittman/courses/robots03/lspi.pdf with OpenAI Gym environment CartPole-v2
+
