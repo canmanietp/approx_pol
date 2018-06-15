@@ -1,22 +1,6 @@
 
-import gym
-import gym.spaces
-import policy
-
-# 'CartPole-v0'
-# actions Discrete(2)
-# states Box(4,)
-# reward range (-inf,inf)
-
-# 'BipedalWalker-v2'
-# actions box(4,) (not sure yet how to use continuous actions without discretising, may have to use NN)
-# states box(24,) (or 14 if you ignore the LIDAR measurements)
-
-env = gym.make('CartPole-v0')
-
-#-----Executing simulation
-# Run one episode of the simulator starting at initial_state and using policy (first policy is random) to select actions
-# Return the total number of steps executed and the discounted and undiscounted rewards collected in the episode
+#-----Run simulator
+# Run one episode according to policy (first policy is random) to select actions starting at initial_state 
 # episode terminates when reaches max_steps or terminal condition (walker falls down or gets to the end)
 
 #-----Compute basis
@@ -39,12 +23,12 @@ env = gym.make('CartPole-v0')
 # compute next_phi for (next_state,next_action)
 #
 # update A and b
-# A = A + phi*(phi-next_phi*new_policy.discount) # Where to keep track of discount??
+# A = A + phi*(phi-next_phi*new_policy.discount) 
 # b = b + phi*reward (of current sample)
 #
 # end loop
 #
-# Solve linear system Aw = b to find w 
+# Solve linear system Aw = b to find w (may need SVD to invert A)
 
 #------Policy Iteration (Least-Squares)
 # input: samples, basis

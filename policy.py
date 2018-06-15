@@ -14,7 +14,7 @@ class Policy:
 		self.l2 = l2
 		self.linf = linf
 		
-	## function which computes random policy?
+	## function which initializes random policy?
 	
 	#def act(self, state):
 		# if EXPLORE
