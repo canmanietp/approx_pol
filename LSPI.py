@@ -28,7 +28,7 @@ def LSPI():
 		samples = sampler.sample(10) #num of episodes to simulate and get samples from (need to sample from these according to prob. dist.?)
 	
 		phi = basis.calculate_basis(samples)
-		k,x = phi.ndim
+		k,x = phi.ndim #dimensions of basis phi
 		
 		if first_time:
 			pi = policy.random_policy(k)  # initial policy with initial weights zero
