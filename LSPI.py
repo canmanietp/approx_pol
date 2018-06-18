@@ -19,11 +19,11 @@ import math
 
 def LSPI(pi): #pi = initial policy with initial weights (can be zero)
 	epsilon = 0.01 #convergence criterion
-	index = 0
+	iteration = 0
 	max_iterations = 100
 	distance = math.inf
 	
-	while index < max_iterations and distance > epsilon:
+	while iteration < max_iterations and distance > epsilon:
 		samples = sample(10) #num of episodes to simulate and get samples from (need to sample from these according to prob. dist.?)
 	
 		phi = calculate_basis(samples)
@@ -42,9 +42,10 @@ def LSPI(pi): #pi = initial policy with initial weights (can be zero)
 			Linf_norm = np.linalg.norm(diff, np.inf)
 			L2_norm = np.linalg.norm(diff) 
 		else:
-			Linf_norm = 
-			L2_norm = 
+			Linf_norm = np.absolute(np.linalg.norm(old_pi.weights,inf) - np.linalg.norm(pi.weights,inf))
+			L2_norm = np.absolute(np.linalg.norm(old_pi.weights) - np.linalg.norm(pi.weights))
 				
 		distance = L2_norm #print Linf_norm
+		iteration+=1
 			
 	return pi
