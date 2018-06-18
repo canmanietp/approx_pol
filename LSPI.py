@@ -35,7 +35,7 @@ def LSPI():
 		
 		old_pi = pi #old weights of pi
 	
-		LSQ.LSQ(samples,k,phi,pi) ## Least squares approximation of Q function, calculate and set new weights for pi based on samples
+		LSQ.calc_weights(samples,k,phi,pi) ## Least squares approximation of Q function, calculate and set new weights for pi based on samples
 			
 		l1 = len(old_pi.weights)
 		l2 = len(pi.weights) 

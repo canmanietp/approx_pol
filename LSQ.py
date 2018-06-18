@@ -21,7 +21,7 @@ import policy
 import basis
 import numpy as np
 
-def LSQ(samples, k, phi,pi):
+def calc_weights(samples, k, phi,pi):
 	#k x k = size of basis
 	A = np.zeros(k,k)
 	b = np.zeros(k,1)

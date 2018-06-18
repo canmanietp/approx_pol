@@ -14,14 +14,12 @@ import basis
 
 class Policy:
 	
-	#shouldn't really have these variables coded this way
+	#BAD PRACTICE
 	discount = 0.98
 	actions = [0,1]  #hard-coded for CartPole-v2
 	
 	def __init__(self,weights):
 		self.weights = weights #should be initialized to zeros 
-		
-	## function which initializes random policy?
 	
 	def act(self, state):
 		max_act = -math.inf
