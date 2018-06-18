@@ -14,5 +14,8 @@ def calculate_basis(state,action):
 
 def calculate_basis(samples):
 	phi = []
+	for state,action in samples:
+		phi.append(calculate_basis(state,action)) 
+	
 	phi = np.array(phi)
 	return phi

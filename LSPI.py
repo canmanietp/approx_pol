@@ -24,8 +24,10 @@ def LSPI():
 	distance = math.inf
 	first_time = True
 	
+	sample_n = 10 # num of episodes to simulate
+	
 	while iteration < max_iterations and distance > epsilon:
-		samples = sampler.sample(10) #num of episodes to simulate and get samples from (need to sample from these according to prob. dist.?)
+		samples = sampler.sample(sample_n) # get samples from simulation (need to sample from these according to prob. dist.?)
 	
 		phi = basis.calculate_basis(samples)
 		k,x = phi.ndim #dimensions of basis phi
