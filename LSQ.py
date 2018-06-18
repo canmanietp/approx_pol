@@ -21,7 +21,7 @@ import policy
 import basis
 import numpy as np
 
-def LSQ(samples, k, phi, discount, pi):
+def LSQ(samples, k, phi,pi):
 	#k x k = size of basis
 	A = np.zeros(k,k)
 	b = np.zeros(k,1)
@@ -31,7 +31,7 @@ def LSQ(samples, k, phi, discount, pi):
 		next_action = Policy.act(pi,state)
 		next_phi = basis(next_state,next_action)
 		
-		A = A + phi*(phi-next_phi*discount)
+		A = A + phi*(phi-next_phi*pi.discount)
 		b = b + phi*reward
 		
 	w = np.linalg.solve(a,b)

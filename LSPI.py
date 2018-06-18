@@ -22,7 +22,6 @@ def LSPI(pi,policies):
 	index = 0
 	max_iterations = 100
 	distance = math.inf
-	discount = 0.98	
 	
 	while index < max_iterations and distance > epsilon:
 		samples = sample(10) #num of episodes to simulate and get samples from (need to sample from these according to prob. dist.?)
@@ -31,7 +30,7 @@ def LSPI(pi,policies):
 		k,x = basis.ndim
 	
 			for check_pi in policies:
-				LSQ(samples,k,phi,discount,pi) ## Least squares approximation of Q function
+				LSQ(samples,k,phi,pi) ## Least squares approximation of Q function
 			
 				l1 = len(pi.weights)
 				l2 = len(check_pi.weights) #??

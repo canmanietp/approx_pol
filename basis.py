@@ -8,9 +8,11 @@
 import numpy
 
 def calculate_basis(state,action):
-	phi = np.array([])
+	phi = []
+	phi = np.array(phi)
 	return phi
 
 def calculate_basis(samples):
-	phi = np.array([])
+	phi = []
+	phi = np.array(phi)
 	return phi

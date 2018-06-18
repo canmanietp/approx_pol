@@ -12,3 +12,6 @@
 
 #------Approximate Q of policy
 # Approx Q is just phi*weights
+
+#----Main
+# Need to initialize pi0 to have weights zero -- how to determine size of weight vector? not necessary
