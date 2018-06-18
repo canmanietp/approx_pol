@@ -24,14 +24,14 @@ def LSPI(pi): #pi = initial policy with initial weights (can be zero)
 	distance = math.inf
 	
 	while iteration < max_iterations and distance > epsilon:
-		samples = sample(10) #num of episodes to simulate and get samples from (need to sample from these according to prob. dist.?)
+		samples = sampler.sample(10) #num of episodes to simulate and get samples from (need to sample from these according to prob. dist.?)
 	
-		phi = calculate_basis(samples)
-		k,x = basis.ndim
+		phi = basis.calculate_basis(samples)
+		k,x = phi.ndim
 		
 		old_pi = pi #old weights of pi
 	
-		LSQ(samples,k,phi,pi) ## Least squares approximation of Q function, calculate and set new weights for pi based on samples
+		LSQ.LSQ(samples,k,phi,pi) ## Least squares approximation of Q function, calculate and set new weights for pi based on samples
 			
 		l1 = len(old_pi.weights)
 		l2 = len(pi.weights) 

@@ -26,7 +26,7 @@ class Policy:
 		max_func = -math.inf
 		
 		for a in self.actions:
-			val_func = calculate_basis(state,a)*self.weights
+			val_func = basis.calculate_basis(state,a)*self.weights
 			
 			if val_func > max_func:
 				max_func = val_func
