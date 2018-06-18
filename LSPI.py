@@ -17,7 +17,7 @@ import basis
 from numpy as np
 import math
 
-def LSPI(pi,policies):
+def LSPI(pi): #pi = initial policy with initial weights (can be zero)
 	epsilon = 0.01 #convergence criterion
 	index = 0
 	max_iterations = 100
@@ -28,21 +28,23 @@ def LSPI(pi,policies):
 	
 		phi = calculate_basis(samples)
 		k,x = basis.ndim
-	
-			for check_pi in policies:
-				LSQ(samples,k,phi,pi) ## Least squares approximation of Q function
-			
-				l1 = len(pi.weights)
-				l2 = len(check_pi.weights) #??
-			
-				if l1==l2:
-					diff = pi.weights - check_pi.weights
-					Linf_norm = np.linalg.norm(diff, np.inf)
-					L2_norm = np.linalg.norm(diff) 
-				else:
-					Linf_norm = 
-					L2_norm = 
-				
-				distance = L2_norm #print Linf_norm
-			
 		
+		old_pi = pi #old weights of pi
+	
+		LSQ(samples,k,phi,pi) ## Least squares approximation of Q function, calculate and set new weights for pi based on samples
+			
+		l1 = len(old_pi.weights)
+		l2 = len(pi.weights) 
+		
+		#compare weights of old_pi and new weights of pi (based on new samples)
+		if l1==l2:
+			diff = old_pi.weights - pi.weights
+			Linf_norm = np.linalg.norm(diff, np.inf)
+			L2_norm = np.linalg.norm(diff) 
+		else:
+			Linf_norm = 
+			L2_norm = 
+				
+		distance = L2_norm #print Linf_norm
+			
+	return pi
