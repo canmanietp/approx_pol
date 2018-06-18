@@ -1,5 +1,5 @@
 ## TO DO:
-# - Intialize random policy
+# - Intialize random policy and weights
 # - Function to act based on policy
 # - Computing basis
 # - k = size of basis (calculate before computing basis?)

@@ -13,11 +13,13 @@ import basis
 
 
 class Policy:
+	
+	#shouldn't really have these variables coded this way
 	discount = 0.98
+	actions = [0,1]  #hard-coded for CartPole-v2
 	
 	def __init__(self,weights):
-		self.actions = [0,1] #hard-coded for CartPole-v2
-		self.weights = [] #should be initialized to zeros 
+		self.weights = weights #should be initialized to zeros 
 		
 	## function which initializes random policy?
 	
@@ -25,7 +27,7 @@ class Policy:
 		max_act = -math.inf
 		max_func = -math.inf
 		
-		for a in self.actions:
+		for a in actions:
 			val_func = basis.calculate_basis(state,a)*self.weights
 			
 			if val_func > max_func:
@@ -34,3 +36,7 @@ class Policy:
 				
 		return max_act
 		
+
+def random_policy(size):
+	pi = Policy(np.zeros(size,1))
+	return pi

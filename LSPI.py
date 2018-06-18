@@ -17,17 +17,21 @@ import basis
 from numpy as np
 import math
 
-def LSPI(pi): #pi = initial policy with initial weights (can be zero)
+def LSPI():
 	epsilon = 0.01 #convergence criterion
 	iteration = 0
 	max_iterations = 100
 	distance = math.inf
+	first_time = True
 	
 	while iteration < max_iterations and distance > epsilon:
 		samples = sampler.sample(10) #num of episodes to simulate and get samples from (need to sample from these according to prob. dist.?)
 	
 		phi = basis.calculate_basis(samples)
 		k,x = phi.ndim
+		
+		if first_time:
+			pi = policy.random_policy(k)  # initial policy with initial weights zero
 		
 		old_pi = pi #old weights of pi
 	
@@ -47,5 +51,6 @@ def LSPI(pi): #pi = initial policy with initial weights (can be zero)
 				
 		distance = L2_norm #print Linf_norm
 		iteration+=1
+		first_time = False
 			
 	return pi

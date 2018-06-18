@@ -28,7 +28,7 @@ def LSQ(samples, k, phi,pi):
 	
 	for state,action,reward,next_state in samples:
 		phi = basis.calculate_basis(state,action)
-		next_action = Policy.act(pi,state)
+		next_action = policy.act(pi,state)
 		next_phi = basis.calculate_basis(next_state,next_action)
 		
 		A = A + phi*(phi-next_phi*pi.discount)
