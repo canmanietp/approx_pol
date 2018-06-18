@@ -1,3 +1,9 @@
+## TO DO:
+# - Intialize random policy
+# - Function to act based on policy
+# - Computing basis
+# - k = size of basis (calculate before computing basis?)
+# - Continuous actions
 
 #-----Run simulator
 # Run one episode according to policy (first policy is random) to select actions starting at initial_state 

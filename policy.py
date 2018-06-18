@@ -1,26 +1,34 @@
 #------class Policy
 # Policy is implicitly represented through a set of weights w
-# pi(state) = max_{a in A} Q(state,a) = max_{a in A} phi(state,a)*w
-# Holds the discount factor, weights (when calculated in the iteration) and the L-inf and L2 norms of the weights (when calculated)
-# and the basis associated with the policy
-# and the total number of (discrete) actions [need to modify for continuous]
+
+# Holds the discount factor and the weights associated with the policy, and the list of discrete action possibilities
+#
 # Given a state, returns an action.
 
+# Calculate actions by pi(state) = max_{a in A} Q(state,a) = max_{a in A} phi(state,a)*w
+
+import numpy as np
+import math
+import basis
+
+
 class Policy:
-	def __init__(self, discount, basis, weights, l2, linf):
-		self.discount = discount #dict
-		self.basis = basis
-		self.weights = weights 
-		self.l2 = l2
-		self.linf = linf
+	
+	def __init__(self):
+		self.actions = [0,1] #hard-coded for CartPole-v2
+		self.weights = np.array([])
 		
 	## function which initializes random policy?
 	
-	#def act(self, state):
-		# if EXPLORE
-		# action = a random action
-		# actionphi = compute basis phi of given state and action above
-		# else
-		# action = action with maximum Q value (calculated by phi*weights)
-		# actionphi = ^
-		#return action, actionphi
+	def act(self, state):
+		max_act = -math.inf
+		max_func = -math.inf
+		
+		for a in self.actions:
+			val_func = calculate_basis(state,a)*self.weights
+			
+			if val_func > max_func:
+				max_func = val_func
+				max_act = a
+				
+		return max_act
