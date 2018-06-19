@@ -10,6 +10,7 @@
 import numpy as np
 import basis
 import sampler
+import sys
 
 class Policy:
 	
@@ -26,12 +27,10 @@ class Policy:
 		max_func = -float('Inf')
 		
 		for a in self.actions:
-			val_func = basis.calculate_basis(state,a)*self.weights
-			
-			norm_val = np.linalg.norm(val_func)
-			norm_max = np.linalg.norm(max_func)
-			
-			if norm_val > norm_max: ##not sure it makes sense to compare norms
+			phi = basis.calculate_basis(state,a)
+			val_func = np.dot(phi,self.weights)
+
+			if val_func > max_func:
 				max_func = val_func
 				max_act = a
 		

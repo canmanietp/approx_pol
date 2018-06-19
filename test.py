@@ -4,5 +4,9 @@
 # print(samples)
 
 import LSPI
+import matplotlib.pyplot as plt
 
-LSPI.run_LSPI()
+policy,distances = LSPI.run_LSPI()
+
+plt.plot(distances)
+plt.show()
