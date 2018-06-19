@@ -52,6 +52,7 @@ def run_LSPI():
 			L2_norm = np.absolute(np.linalg.norm(old_pi.weights) - np.linalg.norm(pi.weights))
 				
 		distance = L2_norm #print Linf_norm
+		
 		print("DISTANCE IS")
 		print(distance)
 		iteration+=1

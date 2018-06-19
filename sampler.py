@@ -39,7 +39,6 @@ def sample(n):
 			step_count+=1
 	
 	print("finished sampling " + str(n) + " episodes")
-	
 	return samples 
 	
 def random_action():

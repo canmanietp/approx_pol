@@ -8,6 +8,7 @@
 import numpy as np
 
 def calculate_basis(state,action):
+	state = np.round(state,2)*100
 	phi = np.insert(state,0,action)
 	phi = np.array(phi)
 	
