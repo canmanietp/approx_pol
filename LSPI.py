@@ -15,6 +15,7 @@ import LSQ
 import sampler
 import basis
 import numpy as np
+import copy
 
 def run_LSPI():
 	epsilon = 0.01 #convergence criterion
@@ -35,12 +36,16 @@ def run_LSPI():
 		if first_time:
 			pi = policy.zero_policy(k)  # initial policy with initial weights zero
 		
-		old_pi = pi #old weights of pi
-	
+		
+		old_pi = copy.copy(pi) #old weights of pi
+
 		LSQ.calc_weights(samples,k,phi,pi) ## Least squares approximation of Q function, calculate and set new weights for pi based on samples
-			
+		
 		l1 = len(old_pi.weights)
-		l2 = len(pi.weights) 
+		l2 = len(pi.weights)
+		
+		print(old_pi.weights)
+		print(pi.weights)
 		
 		#compare weights of old_pi and new weights of pi (based on new samples)
 		if l1==l2:
@@ -55,6 +60,7 @@ def run_LSPI():
 		
 		print("DISTANCE IS")
 		print(distance)
+		
 		iteration+=1
 		first_time = False
 			
