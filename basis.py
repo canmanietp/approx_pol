@@ -5,17 +5,18 @@
 #
 # How? tbd
 
-import numpy
+import numpy as np
 
 def calculate_basis(state,action):
-	phi = []
+	phi = np.insert(state,0,action)
 	phi = np.array(phi)
+	
 	return phi
 
 def calculate_bases(samples):
 	phi = []
 	
-	for state,action in samples:
+	for state,action,done,next_state in samples:
 		phi.append(calculate_basis(state,action)) 
 	
 	phi = np.array(phi)

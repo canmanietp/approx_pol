@@ -1,6 +1,7 @@
 import gym
 import gym.spaces
 import random
+import numpy as np
 
 # 'CartPole-v1'
 # actions Discrete(2)
@@ -23,17 +24,23 @@ def sample(n):
 	
 	for i in range(n):
 		prev_s = env.reset()
-		a = bool(random.getrandbits(1)) #random 0 or 1 action
+		a = random_action() 
 		next_s,r,done,info = env.step(a)
 		sample = (prev_s,a,r,next_s)
 		samples.append(sample)
 		prev_s = next_s
 		step_count = 0
 		while step_count < MAX_STEPS and not done:
-			a = bool(random.getrandbits(1)) #random 0 or 1 action
+			a = random_action() #random 0 or 1 action
 			next_s,r,done,info = env.step(a)
 			sample = (prev_s,a,r,next_s)
 			samples.append(sample)
 			prev_s = next_s
 			step_count+=1
-	return samples
+	
+	print("finished sampling " + str(n) + " episodes")
+	
+	return samples 
+	
+def random_action():
+	return int(random.getrandbits(1)) #random 0 or 1 action

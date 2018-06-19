@@ -8,9 +8,8 @@
 # Calculate actions by pi(state) = max_{a in A} Q(state,a) = max_{a in A} phi(state,a)*w
 
 import numpy as np
-import math
 import basis
-
+import sampler
 
 class Policy:
 	
@@ -22,19 +21,26 @@ class Policy:
 		self.weights = weights #should be initialized to zeros 
 	
 	def act(self, state):
-		max_act = -math.inf
-		max_func = -math.inf
 		
-		for a in actions:
+		max_act = -float('Inf')
+		max_func = -float('Inf')
+		
+		for a in self.actions:
 			val_func = basis.calculate_basis(state,a)*self.weights
 			
-			if val_func > max_func:
+			norm_val = np.linalg.norm(val_func)
+			norm_max = np.linalg.norm(max_func)
+			
+			if norm_val > norm_max: ##not sure it makes sense to compare norms
 				max_func = val_func
 				max_act = a
+		
+		if max_act==-float('Inf'):
+			max_act = sampler.random_action()
 				
 		return max_act
 		
 
-def random_policy(size):
-	pi = Policy(np.zeros(size,1))
+def zero_policy(size):
+	pi = Policy(np.zeros((size,1)))
 	return pi

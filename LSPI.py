@@ -14,15 +14,15 @@ import policy
 import LSQ
 import sampler
 import basis
-from numpy as np
-import math
+import numpy as np
 
-def LSPI():
+def run_LSPI():
 	epsilon = 0.01 #convergence criterion
 	iteration = 0
 	max_iterations = 100
-	distance = math.inf
+	distance = float('Inf')
 	first_time = True
+	pi = []
 	
 	sample_n = 10 # num of episodes to simulate
 	
@@ -30,10 +30,10 @@ def LSPI():
 		samples = sampler.sample(sample_n) # get samples from simulation (need to sample from these according to prob. dist.?)
 	
 		phi = basis.calculate_bases(samples)
-		k,x = phi.ndim #dimensions of basis phi
+		k = 5 ##FIX THIS HARD CODE phi.ndim #dimensions of basis phi (needs to be altered for matrix)
 		
 		if first_time:
-			pi = policy.random_policy(k)  # initial policy with initial weights zero
+			pi = policy.zero_policy(k)  # initial policy with initial weights zero
 		
 		old_pi = pi #old weights of pi
 	
@@ -52,6 +52,8 @@ def LSPI():
 			L2_norm = np.absolute(np.linalg.norm(old_pi.weights) - np.linalg.norm(pi.weights))
 				
 		distance = L2_norm #print Linf_norm
+		print("DISTANCE IS")
+		print(distance)
 		iteration+=1
 		first_time = False
 			

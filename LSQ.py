@@ -23,18 +23,18 @@ import numpy as np
 
 def calc_weights(samples, k, phi,pi):
 	#k x k = size of basis
-	A = np.zeros(k,k)
-	b = np.zeros(k,1)
+	A = np.zeros((k,k))
+	b = np.zeros(k)
 	
 	for state,action,reward,next_state in samples:
 		phi = basis.calculate_basis(state,action)
-		next_action = policy.act(pi,state)
+		next_action = policy.Policy.act(pi,state)
 		next_phi = basis.calculate_basis(next_state,next_action)
 		
-		A = A + phi*(phi-next_phi*pi.discount)
-		b = b + phi*reward
-		
-	w = np.linalg.solve(a,b)
+		A += phi*(phi-next_phi*pi.discount)
+		b += phi*reward
 	
+	print(A,A.shape,b,b.shape)	
+	w = np.linalg.solve(A,b)
 	pi.weights = w
 
