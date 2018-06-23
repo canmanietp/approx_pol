@@ -10,12 +10,10 @@ import numpy as np
 def calculate_basis(state,action):
 	#phi = np.insert(state,0,action)
 	#state = [0.2 0.3 0.1 0.4]
-	
-	if action==1:
-		phi = state*1
-	if action==0:
-		phi = state*-1
-		
+	#print(action)
+	state = np.reshape(state,(24,))
+	state = state[0:13]
+	phi = state
 	phi = np.array(phi)
 	
 	return phi

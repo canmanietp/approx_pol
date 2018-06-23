@@ -12,13 +12,14 @@ import policy
 # 'BipedalWalker-v2'
 # actions box(4,) (not sure yet how to use continuous actions without discretising, may have to use NN)
 # states box(24,) (or 14 if you ignore the LIDAR measurements)
+# reward range (-inf,inf)
 
-
+playground = 'BipedalWalker-v2'
 #-----Create samples
 # Collect samples of (s,a,r,s') for n episodes of simulator
 # Return list of (state, action, reward, next state) tuples
 def sample(n,pi):
-	env = gym.make('CartPole-v1')
+	env = gym.make(playground)
 	MAX_STEPS = env.spec.tags.get('wrapper_config.TimeLimit.max_episode_steps')
 	
 	sample = ()
@@ -51,10 +52,10 @@ def sample(n,pi):
 	return samples 
 	
 def random_action():
-	return int(random.getrandbits(1)) #random 0 or 1 action
+	return np.random.uniform(low=-1, high=1, size=(4,)) #random 0 or 1 action
 	
 def use_policy(pi):
-	env = gym.make('CartPole-v1')
+	env = gym.make(playground)
 	MAX_STEPS = env.spec.tags.get('wrapper_config.TimeLimit.max_episode_steps')
 	total_reward = 0
 	
