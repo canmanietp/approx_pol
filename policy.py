@@ -15,7 +15,7 @@ import sys
 class Policy:
 	
 	#BAD PRACTICE
-	discount = 0.98
+	discount = 0.9
 	actions = [0,1]  #hard-coded for CartPole-v2
 	
 	def __init__(self,weights):
@@ -29,12 +29,12 @@ class Policy:
 		for a in self.actions:
 			phi = basis.calculate_basis(state,a)
 			val_func = np.dot(phi,self.weights)
-
+			#print(val_func,a)
 			if val_func > max_func:
 				max_func = val_func
 				max_act = a
 		
-		if max_act==-float('Inf'):
+		if max_func==-float('Inf'):
 			max_act = sampler.random_action()
 				
 		return max_act
