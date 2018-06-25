@@ -20,13 +20,13 @@ import copy
 def run_LSPI():
 	epsilon = 1 #convergence criterion, should this be dynamic?
 	iteration = 0
-	max_iterations = 50
+	max_iterations = 20
 	distance = float('Inf')
 	first_time = True
 	pi = []
 	distances = []
 	
-	sample_n = 5 # num of episodes to simulate
+	sample_n = 3 # num of episodes to simulate
 	
 	while iteration < max_iterations and distance > epsilon:
 		samples = sampler.sample(sample_n,pi) # get samples from simulation (need to sample from these according to prob. dist.?)
