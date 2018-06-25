@@ -30,7 +30,7 @@ def sample(n,pi):
 		if pi==[]:
 			a = random_action()
 		else:
-			a = pi.act(prev_s) # random_action() 
+			a = pi.act(prev_s) 
 		next_s,r,done,info = env.step(a)
 		sample = (prev_s,a,r,next_s)
 		samples.append(sample)
@@ -40,7 +40,8 @@ def sample(n,pi):
 			if pi==[]:
 				a = random_action()
 			else:
-				a = pi.act(prev_s) # random_action() 
+				a = pi.act(prev_s)
+				pi.add_tried_action(a)
 			next_s,r,done,info = env.step(a)
 			sample = (prev_s,a,r,next_s)
 			samples.append(sample)
@@ -48,11 +49,13 @@ def sample(n,pi):
 			step_count+=1
 	
 	print("finished sampling " + str(n) + " episodes")
+
+		
 	env.close()
 	return samples 
 	
 def random_action():
-	return np.random.uniform(low=-1, high=1, size=(4,)) #random 0 or 1 action
+	return np.random.uniform(low=-1, high=1, size=(4,)) #random action
 	
 def use_policy(pi):
 	env = gym.make(playground)

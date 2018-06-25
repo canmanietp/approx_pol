@@ -12,10 +12,9 @@ def calculate_basis(state,action):
 	#state = [0.2 0.3 0.1 0.4]
 	#print(action)
 	state = np.reshape(state,(24,))
-	state = state[0:13]
-	phi = state
+	phi = state[0:13]
+	#phi = [state[0]*action[0],state[1]*action[1],state[2]*action[2],state[3]*action[3]]
 	phi = np.array(phi)
-	
 	return phi
 
 def calculate_bases(samples):
