@@ -18,9 +18,9 @@ import numpy as np
 import copy
 
 def run_LSPI():
-	epsilon = 1 #convergence criterion, should this be dynamic?
+	epsilon = .01 #convergence criterion, should this be dynamic?
 	iteration = 0
-	max_iterations = 20
+	max_iterations = 100
 	distance = float('Inf')
 	first_time = True
 	pi = []

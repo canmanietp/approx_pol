@@ -30,8 +30,8 @@ class Policy:
 		if (random.randint(1,100)<2):
 			self.add_tried_action(sampler.random_action())
 		
-		if len(self.tried_actions) > 200:
-			self.tried_actions = self.tried_actions[-200:]		
+		if len(self.tried_actions) > 500:
+			self.tried_actions = self.tried_actions[-500:]		
 			
 		for a in self.tried_actions:
 			
@@ -46,7 +46,6 @@ class Policy:
 		
 		if max_func==-float('Inf'):
 			max_act = sampler.random_action()
-			print("used random action")
 		return max_act
 		
 	def add_tried_action(self,a):

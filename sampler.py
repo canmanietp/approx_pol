@@ -24,6 +24,7 @@ def sample(n,pi):
 	
 	sample = ()
 	samples = []
+	avg_reward = 0
 	
 	for i in range(n):
 		prev_s = env.reset()
@@ -32,6 +33,7 @@ def sample(n,pi):
 		else:
 			a = pi.act(prev_s) 
 		next_s,r,done,info = env.step(a)
+		avg_reward+=r
 		sample = (prev_s,a,r,next_s)
 		samples.append(sample)
 		prev_s = next_s
@@ -44,14 +46,14 @@ def sample(n,pi):
 				pi.add_tried_action(a)
 			next_s,r,done,info = env.step(a)
 			sample = (prev_s,a,r,next_s)
+			avg_reward+=r
 			samples.append(sample)
 			prev_s = next_s
 			step_count+=1
 	
-	print("finished sampling " + str(n) + " episodes")
-
-		
 	env.close()
+	avg_reward = avg_reward/n
+	print("finished sampling " + str(n) + " episodes with average reward " + str(avg_reward))
 	return samples 
 	
 def random_action():

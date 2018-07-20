@@ -6,16 +6,18 @@
 # How? tbd
 
 import numpy as np
+import pandas as pd
+#import tensorflow as tf
+from sklearn.preprocessing import StandardScaler
+from sklearn.decomposition import PCA
 
 def calculate_basis(state,action):
-	#phi = np.insert(state,0,action)
-	#state = [0.2 0.3 0.1 0.4]
-	#print(action)
 	state = np.reshape(state,(24,))
 	phi = np.insert(state[0:13],0,action)
 	#phi = [state[0]*action[0],state[1]*action[1],state[2]*action[2],state[3]*action[3]]
 	phi = np.array(phi)
-	return phi
+	
+	return phi #needs to be numpy array
 
 def calculate_bases(samples):
 	phi = []
@@ -25,3 +27,15 @@ def calculate_bases(samples):
 	
 	phi = np.array(phi)
 	return phi
+
+# def calculate_basis(state,action,next_state):
+# 	#state = np.reshape(state,(24,))
+# 	state_trans = next_state - state
+# 	state_action = np.insert(action,0,state)
+# 
+# 	print(state_action)
+# 	
+# # 	corr = state_action_df.corr()
+# # 	print(corr)
+# 	
+# 	return [] #needs to be numpy array
