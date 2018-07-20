@@ -5,8 +5,11 @@
 
 import LSPI
 import matplotlib.pyplot as plt
+import sampler
 
-policy,distances = LSPI.run_LSPI()
+pi,distances = LSPI.run_LSPI()
 
 plt.plot(distances)
 plt.show()
+
+sampler.use_policy(pi)

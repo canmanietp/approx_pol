@@ -18,7 +18,7 @@ import numpy as np
 import copy
 
 def run_LSPI():
-	epsilon = 0.01 #convergence criterion
+	epsilon = 0.1 #convergence criterion, should this be dynamic?
 	iteration = 0
 	max_iterations = 100
 	distance = float('Inf')
@@ -26,13 +26,13 @@ def run_LSPI():
 	pi = []
 	distances = []
 	
-	sample_n = 100 # num of episodes to simulate
+	sample_n = 10 # num of episodes to simulate
 	
 	while iteration < max_iterations and distance > epsilon:
-		samples = sampler.sample(sample_n) # get samples from simulation (need to sample from these according to prob. dist.?)
+		samples = sampler.sample(sample_n,pi) # get samples from simulation (need to sample from these according to prob. dist.?)
 	
 		phi = basis.calculate_bases(samples)
-		k = 5 ##FIX THIS HARD CODE phi.ndim #dimensions of basis phi (needs to be altered for matrix)
+		k = np.size(phi,1) #dimensions of basis phi (needs to be altered for matrix)
 		
 		if first_time:
 			pi = policy.zero_policy(k)  # initial policy with initial weights zero
@@ -57,8 +57,7 @@ def run_LSPI():
 		
 		distances.append(distance)
 		
-		print("DISTANCE IS")
-		print(distance)
+		print("Distance between weights is " + str(distance) + " at iteration " + str(iteration))
 		
 		iteration+=1
 		first_time = False
